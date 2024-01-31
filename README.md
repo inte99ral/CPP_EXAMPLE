@@ -1,2 +1,3 @@
-# C-Platformer
+# Cpp_Platformer
+
 C++ project for study

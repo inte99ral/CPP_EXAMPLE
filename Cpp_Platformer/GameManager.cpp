@@ -4,83 +4,74 @@
 #define KEY_UP(vk_code) ((GetAsyncKeyState(vk_code) & 0x8000) ? 0 : 1)
 
 const char *SYSTEM_SETTING = "mode con: cols=100 lines=100 | title Cpp-Platformer v0.1";
+const int MAX_Y = 50;
+const int MAX_X = 50;
 
 int characterY = 0;
 int characterX = 0;
 
-int getKeyDown()
-{
+int getKeyDown() {
   if (_kbhit() == 0)
-    return 0; // ÀÔ·Â°¨Áö
+    return 0;  // ìž…ë ¥ê°ì§€
 
-  if (KEY_DOWN(VK_LEFT))
-  {
+  if (KEY_DOWN(VK_LEFT)) {
     if (characterX > 0)
       characterX--;
   }
-  if (KEY_DOWN(VK_RIGHT))
-  {
-    if (characterX < 10)
+  if (KEY_DOWN(VK_RIGHT)) {
+    if (characterX < MAX_X)
       characterX++;
   }
-  if (KEY_DOWN(VK_UP))
-  {
+  if (KEY_DOWN(VK_UP)) {
     if (characterY > 0)
       characterY--;
   }
-  if (KEY_DOWN(VK_DOWN))
-  {
-    if (characterY < 10)
+  if (KEY_DOWN(VK_DOWN)) {
+    if (characterY < MAX_Y)
       characterY++;
   }
 
   return _getch();
 }
 
-void setCursor()
-{
+void setCursor() {
   CONSOLE_CURSOR_INFO cursorInfo = {
       0,
   };
-  cursorInfo.dwSize = 1;       // Ä¿¼­ ±½±â (1 ~ 100)
-  cursorInfo.bVisible = false; // Ä¿¼­ Visible TRUE(º¸ÀÓ) FALSE(¼û±è)
+  cursorInfo.dwSize = 1;        // ì»¤ì„œ êµµê¸° (1 ~ 100)
+  cursorInfo.bVisible = false;  // ì»¤ì„œ Visible TRUE(ë³´ìž„) FALSE(ìˆ¨ê¹€)
   SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 }
 
-void setCursorPos(int Y, int X)
-{
+void setCursorPos(int Y, int X) {
   COORD Pos;
   Pos.Y = Y;
   Pos.X = X;
   SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
 }
 
-void displayCharacter()
-{
+void displayCharacter() {
   // setCursorPos(characterY, characterX);
   // std::cout << "[Y : " << characterY << "] [X : " << characterX << "]" << std::endl;
 }
 
-void setDisplay()
-{
+void setDisplay() {
   system("cls");
   setCursorPos(characterY, characterX);
-  printf("¦£    X:%02d ¦¤", characterX);
+  printf("â”Œ    X:%02d â”", characterX);
   setCursorPos(characterY + 2, characterX);
   printf("     +    Y:%02d", characterY);
   setCursorPos(characterY + 4, characterX);
-  printf("¦¦         ¦¥");
+  printf("â””         â”˜");
 }
 
-void awake()
-{
-  system(SYSTEM_SETTING); // ÄÜ¼ÖÃ¢ Å©±â ¹× Á¦¸ñ ¼³Á¤
+void awake() {
+  system(SYSTEM_SETTING);  // ì½˜ì†”ì°½ í¬ê¸° ë° ì œëª© ì„¤ì •
   // setCursor();
   setDisplay();
 }
 
-int update()
-{
+int update() {
   int input = getKeyDown();
   if (input == 0)
     return 1;

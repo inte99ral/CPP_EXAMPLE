@@ -1,20 +1,11 @@
-#include "GameManager.hpp"
+#include <iostream>
+
+// #include "include2/Test.hpp"
 
 using namespace std;
 
 int main() {
-  awake();
-
-  while (1) {
-    if (!update()) return 1;
-
-    if (true) {
-      return 0;
-    }
-    else {
-      return -1;
-    }
-  }
-
+  cout << "wow - " << endl;
+  // func1();
   return 0;
 }

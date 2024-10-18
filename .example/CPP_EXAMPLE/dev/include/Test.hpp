@@ -2,9 +2,10 @@
 #define TEST_HPP
 
 #include <iostream>
-#include <string>
 
-const std::string VERSION_CODE = "0.03v";
+using namespace std;
+
+const string VERSION_CODE = "0.03v";
 
 void printVersion();
 

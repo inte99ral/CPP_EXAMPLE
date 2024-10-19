@@ -5,8 +5,11 @@
 
 using namespace std;
 
-const string VERSION_CODE = "0.03v";
+const string TEST_VERSION = "v0.03";
 
-void printVersion();
+void onGUI();
+void offGUI();
+void awake();
+int update();
 
 #endif

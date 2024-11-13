@@ -1,7 +1,7 @@
 #include <conio.h>
 #include <iostream>
-#include <stdlib.h> // * NEEDED
 #include <Windows.h>
+#include <curses.h>
 
 using namespace std;
 
@@ -13,11 +13,16 @@ void setCursorPos(int Y, int X) {
 }
 
 int main() {
-	system("cls"); // * WINDOW SHELL CLEAR
-	system("color B4");
+	// system("cls");
+	// system("color B4");  
 
 	while(1) {
+		int Y, X;
+		cin >> Y >> X;
 
+		setCursorPos(Y, X);
+		cout << "#";
+		setCursorPos(10, 10);
 	}
 
 	return 0;

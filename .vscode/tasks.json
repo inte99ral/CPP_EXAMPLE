@@ -1,0 +1,136 @@
+{
+  // task.json 에 대한 공식문서 https://go.microsoft.com/fwlink/?LinkId=733558
+  "version": "2.0.0",
+  "tasks": [
+    // # Build & Compile =========================================================
+    // ## C++ ====================================================================
+    // ### [x] C++：CMD：단일파일 빌드 (백준 채점용) ================================
+    {
+      "label": "C++：백준 풀이 빌드",
+      "detail": "백준 C++17 표준옵션으로 컴파일합니다.",
+      "type": "cppbuild",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "command": "g++",
+      "args": [
+        "${fileDirname}\\**.cpp",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe",
+        "-O2", // loop unrolling, function inlining, 메모리 및 속도희생을 제외한 모든 범위 최적화
+        "-Wall", // 모든 모호한 코딩에 대해서 경고를 보내는 옵션
+        "-lm", // math libarary 사용
+        "-static", // 정적 라이브러리와 공유 라이브러리 중 정적을 우선한다. 속도는 빠르지만 파일 사이즈가 커짐
+        "-std=gnu++17", // C++17 Clang GNU 확장기능 유효
+        "-ID:\\Program Files\\boost\\lib",
+        "-LD:\\Program Files\\boost\\include\\boost-1_87",
+        "-lboost_system-mgw14-mt-d-x64-1_87",
+        "-lboost_thread-mgw14-mt-d-x64-1_87",
+        "-lwsock32",
+        "-lws2_32"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": {
+        "owner": "cpp",
+        "fileLocation": ["relative", "${workspaceRoot}"],
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      }
+    },
+
+    // ### [ ] C++：CMD：반복검색 빌드 =============================================
+    {
+      "label": "C++：CMD：반복검색 빌드",
+      "detail": "내부의 cpp 파일들을 반복검색한 후 빌드합니다.",
+      "type": "cppbuild",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      // * (FOR /F "usebackq" %i IN (`dir/a-d/s/b <DIRECTORY_PATH> ^|findstr/e ".cpp"`) DO @(CALL SET cpps=%cpps% %i)) & CALL g++ %cpps:~7% -o ${fileDirname}\\${fileBasenameNoExtension}.exe -O2 -static -std=gnu++17
+      "command": "(FOR",
+      "args": [
+        "/F", // cpps 변수에 .cpp 확장자 파일 목록 지정
+        "\"usebackq\"",
+        "%i",
+        "IN",
+        "(`dir/a-d/s/b",
+        "${fileDirname}\\src",
+        "^|findstr/e",
+        "\".cpp\"`)",
+        "DO",
+        "@(CALL",
+        "SET",
+        "cpps=%cpps%",
+        "%i))",
+        "&",
+        "CALL", // g++ 호출
+        "g++",
+        "%cpps:~7%",
+        "${fileDirname}\\**.cpp", // Main.cpp 및 최상위 디렉토리
+        "-o${fileDirname}\\${fileBasenameNoExtension}.exe"
+        // "-L${fileDirname}\\include\\curses",
+        // "-lpdcurses"
+      ]
+    },
+
+    // ### [ ] C++：CMD：라이브러리 폴더 지정 ======================================
+    {
+      "label": "C++：CMD：라이브러리 폴더 지정",
+      "detail": "동적 라이프러리 폴더 경로를 지정 후 빌드합니다.",
+      "type": "cppbuild",
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      // * g++ <INPUT_FILE> -o <OUTPUT_FILE> -Wl,-whole-archive -L<LIBRARY_DIRECTORY_PATH>
+      "command": "g++",
+      "args": [
+        ".\\**.cpp",
+        "-o",
+        ".\\${fileBasenameNoExtension}.exe",
+        "-Wl,-whole-archive",
+        "-L.\\lib"
+        // "-lfmod",
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": {
+        "owner": "cpp",
+        "fileLocation": ["relative", "${workspaceRoot}"],
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      }
+    },
+
+    // # Test & Run ==============================================================
+    // ## C++ ====================================================================
+    // ### [ ] C++：빌드된 .exe 파일 실행 ==========================================
+    {
+      "label": "C++：빌드된 .exe 파일 실행",
+      "detail": "현재 폴더에서 cpp 파일과 같은 이름의 exe 파일을 구동합니다.",
+      "type": "process",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "command": "${fileDirname}/${fileBasenameNoExtension}.exe"
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+// # settings.json
+
+// ## Documentation ==========================================================
+/*
+ * ctrl + , 누르고 세팅에 적용하기
+ *
+ * 자주 쓰는 확장들
+ * ### Default:
+ * [x] Material Icon Theme
+ * [x] TODO Highlight
+ * [x] Git Graph
+ * [x] indent-rainbow
+ * [x] IntelliCode
+ * [x] IntelliCode API Usage Examples
+ * [x] WSL
+ *
+ * ### MarkDown:
+ * [x] Markdown All in One
+ * [x] markdownlint
+ *
+ * ### HTML & JavaScript:
+ * [x] Live Server
+ * [x] Auto Rename Tag
+ * [x] Auto Close Tag
+ * [x] ES7+ React/Redux/React-Native snippets
+ * [x] ESLint
+ * [x] Prettier - Code formatter
+ * [x] Prettier ESLint
+ * [x] vscode-styled-components
+ *
+ * ### C++:
+ * [x] C/C++
+ * [x] C/C++ Extension Pack
+ * [x] C/C++ Themes
+ * [x] CMake
+ * [x] CMake Tools
+ *
+ * ### Java:
+ * [x] Extension Pack for Java
+ * [x] Debugger for Java
+ * [x] Java prettier formatter
+ * [x] Language Support for Java(TM) by Red Hat
+ * [x] Maven for Java
+ * [x] Project Manager for Java
+ * [x] Test Runner for Java
+ */
+
+// ## Setting ================================================================
+{
+  // ### Default:
+  "explorer.compactFolders": false, // 폴더 경로 압축 여부
+  "workbench.colorTheme": "Visual Studio Light - C++", // vscode theme
+  "typescript.updateImportsOnFileMove.enabled": "never", // 파일 위치를 바꿀 때, 참조하는 경로들을 자동으로 수정할 지 여부
+
+  // ### material-icon-theme:
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.folders.associations": {
+    "component": "components",
+    ".example": "Examples",
+    "_EXAMPLE_": "Examples",
+    "C++": "Cobol",
+    "Problem": "Tasks",
+    "Solved": "Resolver",
+    "Failed": "Debug",
+    "Unsolved": "Error"
+  },
+
+  // ### Todo highlight:
+  "todohighlight.isEnable": true,
+  "todohighlight.include": [
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.html",
+    "**/*.php",
+    "**/*.css",
+    "**/*.scss",
+    "**/*.md",
+    "**/*.java",
+    "**/*.cpp"
+  ],
+  "todohighlight.exclude": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.vscode/**",
+    "**/.github/**",
+    "**/_output/**",
+    "**/*.min.*",
+    "**/*.map",
+    "**/.next/**"
+  ],
+  "todohighlight.keywords": [],
+
+  // ### Formatter:
+  "html.format.extraLiners": "",
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.accessibilitySupport": "off",
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // prettier formatter setting
+  // "editor.defaultFormatter": "ms-vscode.cpptools", // vscode cpp formatter setting
+  // "C_Cpp.clang_format_style": "{ BasedOnStyle: Google, UseTab: Never, IndentWidth: 2, TabWidth: 2, BreakBeforeBraces: Custom, BraceWrapping: { BeforeElse : true, BeforeWhile : true, BeforeCatch : true }, AllowShortIfStatementsOnASingleLine: AllIfsAndElse, IndentCaseLabels: false, ColumnLimit: 0, NamespaceIndentation: All, FixNamespaceComments: false, AccessModifierOffset: -1 }",
+  "editor.wordWrap": "on", // 글씨 자동개행 {on | off}
+  "[markdown]": {
+    "editor.wordWrap": "on" // 글씨 자동개행 {on | off}
+  },
+  "markdownlint.config": {
+    "MD009": false, // Don't lint : Trailing space
+    "MD010": false, // Don't lint : Hard tabs
+    "MD014": false, // Don't lint : Dollar signs used before commands without showing output
+    "MD026": false, // Don't lint : Trailing punctuation in heading [Punctuation: ':']
+    "MD029": false, // Don't lint : Ordered list item prefix
+    "MD031": false, // Don't lint : Fenced code blocks should be surrounded by blank lines
+    "MD033": false // Don't lint : Inline HTML
+  },
+
+  // ### Terminal:
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash"
+    }
+  },
+  // "terminal.integrated.defaultProfile.windows": "PowerShell", // Default terminal
+  "cmake.configureOnOpen": false,
+  "cmake.showOptionsMovedNotification": false,
+  "files.associations": {
+    "iostream": "cpp",
+    "*.tcc": "cpp",
+    "deque": "cpp",
+    "list": "cpp",
+    "string": "cpp",
+    "unordered_map": "cpp",
+    "unordered_set": "cpp",
+    "vector": "cpp",
+    "forward_list": "cpp",
+    "tuple": "cpp",
+    "algorithm": "cpp",
+    "cmath": "cpp",
+    "any": "cpp",
+    "array": "cpp",
+    "atomic": "cpp",
+    "barrier": "cpp",
+    "bit": "cpp",
+    "bitset": "cpp",
+    "cctype": "cpp",
+    "cfenv": "cpp",
+    "charconv": "cpp",
+    "chrono": "cpp",
+    "cinttypes": "cpp",
+    "clocale": "cpp",
+    "codecvt": "cpp",
+    "compare": "cpp",
+    "complex": "cpp",
+    "concepts": "cpp",
+    "condition_variable": "cpp",
+    "coroutine": "cpp",
+    "csetjmp": "cpp",
+    "csignal": "cpp",
+    "cstdarg": "cpp",
+    "cstddef": "cpp",
+    "cstdint": "cpp",
+    "cstdio": "cpp",
+    "cstdlib": "cpp",
+    "cstring": "cpp",
+    "ctime": "cpp",
+    "cuchar": "cpp",
+    "cwchar": "cpp",
+    "cwctype": "cpp",
+    "map": "cpp",
+    "set": "cpp",
+    "exception": "cpp",
+    "expected": "cpp",
+    "functional": "cpp",
+    "iterator": "cpp",
+    "memory": "cpp",
+    "memory_resource": "cpp",
+    "numeric": "cpp",
+    "optional": "cpp",
+    "random": "cpp",
+    "ratio": "cpp",
+    "regex": "cpp",
+    "source_location": "cpp",
+    "string_view": "cpp",
+    "system_error": "cpp",
+    "type_traits": "cpp",
+    "utility": "cpp",
+    "format": "cpp",
+    "fstream": "cpp",
+    "future": "cpp",
+    "generator": "cpp",
+    "initializer_list": "cpp",
+    "iomanip": "cpp",
+    "iosfwd": "cpp",
+    "istream": "cpp",
+    "latch": "cpp",
+    "limits": "cpp",
+    "mutex": "cpp",
+    "new": "cpp",
+    "numbers": "cpp",
+    "ostream": "cpp",
+    "print": "cpp",
+    "ranges": "cpp",
+    "scoped_allocator": "cpp",
+    "semaphore": "cpp",
+    "shared_mutex": "cpp",
+    "span": "cpp",
+    "spanstream": "cpp",
+    "sstream": "cpp",
+    "stacktrace": "cpp",
+    "stdexcept": "cpp",
+    "stdfloat": "cpp",
+    "stop_token": "cpp",
+    "streambuf": "cpp",
+    "syncstream": "cpp",
+    "text_encoding": "cpp",
+    "thread": "cpp",
+    "typeindex": "cpp",
+    "typeinfo": "cpp",
+    "valarray": "cpp",
+    "variant": "cpp"
+  }
+}

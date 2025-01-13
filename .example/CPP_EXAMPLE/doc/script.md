@@ -65,9 +65,9 @@ PROJECT_FOLDER/ (솔루션 최상위 폴더)
   │  └─ release/ (릴리즈 빌드. 또는 dist/ 배포용 빌드)
   ├─ dev/ (개발 중인 소스코드 및 에셋)
   │  ├─ asset/ (BGM과 이미지 등의 에셋)
-  │  ├─ include/ (all special included .h)
-  │  ├─ lib/ (all third-party library files (.a/.so files) here)
-  │  └─ src/ ((.c , .h .cpp) files here)
+  │  ├─ include/ (소스코드와 라이브러리의 인터페이스 all special included .h)
+  │  ├─ lib/ (외부 참조 라이브러리 all third-party library files (.a/.so files) here)
+  │  └─ src/ (개발 소스코드 (.c , .h .cpp) files here)
   ├─ doc/ (개발 관련 문서, 원페이저, SRS, SDS, 매뉴얼, 참고문서)
   ├── .gitignore
   ├── LICENSE

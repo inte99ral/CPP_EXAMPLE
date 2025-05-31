@@ -3,19 +3,20 @@
   "version": "2.0.0",
   "tasks": [
     // # Build & Compile =========================================================
+
     // ## C++ ====================================================================
-    // ### [x] C++：CMD：단일파일 빌드 (백준 채점용) ================================
+    // ### [ ] C++：CMD：단일파일 빌드 (백준 채점용) ================================
     {
       "label": "C++：백준 풀이 빌드",
       "detail": "백준 C++17 표준옵션으로 컴파일합니다.",
       "type": "cppbuild",
       "group": {
         "kind": "build",
-        "isDefault": true
+        "isDefault": false
       },
       "command": "g++",
       "args": [
-        "${fileDirname}\\**.cpp",
+        "${file}",
         "-o",
         "${fileDirname}\\${fileBasenameNoExtension}.exe",
         "-O2", // loop unrolling, function inlining, 메모리 및 속도희생을 제외한 모든 범위 최적화
@@ -23,8 +24,10 @@
         "-lm", // math libarary 사용
         "-static", // 정적 라이브러리와 공유 라이브러리 중 정적을 우선한다. 속도는 빠르지만 파일 사이즈가 커짐
         "-std=gnu++17", // C++17 Clang GNU 확장기능 유효
-        "-ID:\\Program Files\\boost\\lib",
-        "-LD:\\Program Files\\boost\\include\\boost-1_87",
+        "-I",
+        "\"D:\\Program Files\\boost\\include\\boost-1_87\"",
+        "-L",
+        "\"D:\\Program Files\\boost\\lib\"",
         "-lboost_system-mgw14-mt-d-x64-1_87",
         "-lboost_thread-mgw14-mt-d-x64-1_87",
         "-lwsock32",
@@ -71,28 +74,36 @@
           "message": 5
         }
       },
-      "command": "(FOR",
+      "command": "@(CALL",
       "args": [
+        // * cpp 파일 목록 초기화
+        "SET",
+        "\"srcs= \")",
+        "&&",
+        // * FOR dir cpp 파일 검색
+        "(FOR",
         "/F",
         "\"usebackq\"",
         "%i",
         "IN",
-        "(`dir/a-d/s/b",
-        "${fileDirname}\\src\\",
+        "(`DIR/A-D/S/B",
+        "${fileDirname}\\src",
+        // ** 에러 출력 리다이렉션
+        "2^>nul",
         "^|findstr/e",
         "\".cpp\"`)",
         "DO",
         "@(CALL",
         "SET",
-        "srcs=%srcs%",
-        "%i))",
+        "\"srcs=%srcs% %i\"",
+        "))",
         "&",
+        // * g++
         "CALL",
-        // * g++ 명령어 호출
         "g++",
         // ** g++ > 타겟팅
-        "${fileDirname}\\**.cpp",
-        "%srcs:~7%",
+        "%srcs:~2%",
+        "${file}",
         "-o${fileDirname}\\${fileBasenameNoExtension}.exe",
         // ** g++ > 옵션
         "-O2",
@@ -100,8 +111,8 @@
         "-static",
         "-std=gnu++17",
         // ** g++ > 참조 설정
-        "-ID:\\Program Files\\boost\\lib",
-        "-LD:\\Program Files\\boost\\include\\boost-1_87",
+        "-ID:\\Program Files\\boost\\include\\boost-1_87",
+        "-LD:\\Program Files\\boost\\lib",
         "-lboost_system-mgw14-mt-d-x64-1_87",
         "-lboost_thread-mgw14-mt-d-x64-1_87",
         "-lwsock32",

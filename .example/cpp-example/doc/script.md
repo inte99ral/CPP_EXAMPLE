@@ -13,8 +13,8 @@ https://stackoverflow.com/questions/2360734/whats-a-good-directory-structure-for
 - 체계적인 관리를 위해선 별도의 구조로 정리할 필요가 있습니다.
 
 ```text
-PROJECT_FOLDER/ (솔루션 최상위 폴더)
-├─ PROJECT_FOLDER/ (각 프로젝트 공통 구성파일, 설정, .cpp, .hpp)
+project-folder/ (솔루션 최상위 폴더)
+├─ project-folder/ (각 프로젝트 공통 구성파일, 설정, .cpp, .hpp)
 │  ├─ debug/ (프로젝트의 디버그 빌드로 생성된 obj 파일)
 │  └─ release/ (프로젝트의 릴리즈 빌드로 생성된 obj 파일)
 ├─ debug/ (솔루션의 디버그 빌드 결과물이 저장되는 경로)
@@ -27,7 +27,7 @@ PROJECT_FOLDER/ (솔루션 최상위 폴더)
 - 전체 프로젝트의 형상 관리를 위해서 확장자와 역할 별로 묶습니다.
 
   ```text
-  PROJECT_NAME/ (root)
+  project-folder/ (root)
   ├─ bin/ (빌드 결과물, .exe, .dll, 재배포 패키지 등)
   ├─ build/ (빌드 결과물, .exe, .dll, 재배포 패키지 등)
   │  ├─ ExExe/ (ExExe 프로젝트 폴더)
@@ -59,7 +59,7 @@ PROJECT_FOLDER/ (솔루션 최상위 폴더)
 - 개인적으로 자주쓰는 구조는 다음과 같습니다.
 
   ```text
-  PROJECT_NAME/ (root folder 최상위 루트 폴더)
+  project-folder/ (root folder 최상위 루트 폴더)
   ├─ build/ (컴파일된 빌드 결과물, .exe, .dll)
   │  ├─ debug/ (디버그 빌드. 또는 test/ 시범용 빌드)
   │  └─ release/ (릴리즈 빌드. 또는 dist/ 배포용 빌드)

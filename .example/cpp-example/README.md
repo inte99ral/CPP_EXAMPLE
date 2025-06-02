@@ -1,4 +1,4 @@
-# CPP_EXAMPLE
+# cpp-example
 
 C++ project for study
 

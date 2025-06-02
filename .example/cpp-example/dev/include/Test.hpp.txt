@@ -1,0 +1,8 @@
+#ifndef TEST_HPP
+#define TEST_HPP
+
+using namespace std;
+
+const string TEST_VERSION = "v0.03";
+
+#endif

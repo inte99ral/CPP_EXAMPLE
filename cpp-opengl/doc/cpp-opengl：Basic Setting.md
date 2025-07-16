@@ -1,81 +1,4 @@
-# Basic Setting
-
-## 프로젝트 구조 및 형상 관리 컨벤션
-
-cpp 프로젝트 구조
-https://stackoverflow.com/questions/2360734/whats-a-good-directory-structure-for-larger-c-projects-using-makefile
-
-### Visual Studio C++ MFC 프로젝트 구조
-
-- MFC (Microsoft Foundation Class Library, 마이크로소프트 파운데이션 클래스 라이브러리)는 윈도우 응용 프로그램의 통합 개발 환경인 마이크로소프트 비주얼 C++ 에 부속되는 클래스 라이브러리입니다.
-- 단순하게 표현하면 C++로 GUI 윈도우 프로그램을 만드는 라이브러리입니다.
-- 해당 구조는 솔루션(.sln) 단위로 구성되며, 솔루션은 다수의 프로젝트를 포함합니다.
-- 각 프로젝트들은 exe, dll 파일을 생성합니다.
-- 프로젝트 구성 파일과 개발한 코드, 빌드 산출물들이 모두 섞여있는 단순한 구조입니다.
-- 체계적인 관리를 위해선 별도의 구조로 정리할 필요가 있습니다.
-
-```text
-project-folder/ (솔루션 최상위 폴더)
-├─ project-folder/ (각 프로젝트 공통 구성파일, 설정, .cpp, .hpp)
-│  ├─ debug/ (프로젝트의 디버그 빌드로 생성된 obj 파일)
-│  └─ release/ (프로젝트의 릴리즈 빌드로 생성된 obj 파일)
-├─ debug/ (솔루션의 디버그 빌드 결과물이 저장되는 경로)
-└─ release/ (솔루션의 릴리즈 빌드 결과물이 저장되는 경로)
-```
-
-### 보편적인 구조
-
-- 체계적인 관리를 감안하여 짜여지는 보편적인 구조입니다.
-- 전체 프로젝트의 형상 관리를 위해서 확장자와 역할 별로 묶습니다.
-
-  ```text
-  project-folder/ (root)
-  ├─ bin/ (빌드 결과물, .exe, .dll, 재배포 패키지 등)
-  ├─ build/ (빌드 결과물, .exe, .dll, 재배포 패키지 등)
-  │  ├─ ExExe/ (ExExe 프로젝트 폴더)
-  │  └─ ExDLL/ (ExDLL 프로젝트 폴더)
-  ├─ doc/ (개발 관련 문서, 원페이저, SRS, SDS, 매뉴얼, 참고문서)
-  ├─ include/ (각 프로젝트에서 직접 작성했거나 외부 라이브러리의 헤더파일)
-  │  ├─ ExExe/ (ExExe 프로젝트 폴더)
-  │  ├─ ExDLL/ (ExDLL 프로젝트 폴더)
-  │  └─ ExLibrary/ (외부 라이브러리 폴더)
-  ├─ lib/ (외부 라이브러리나 프로젝트 빌드로 생성된 .lib 파일)
-  │  ├─ ExExe/ (ExExe 프로젝트 폴더)
-  │  ├─ ExDLL/ (ExDLL 프로젝트 폴더)
-  │  └─ ExLibrary/ (외부 라이브러리 폴더)
-  ├─ obj/ (프로젝트 빌드로 생성된 obj 파일과 빌드 산출물)
-  │  ├─ ExExe/ (ExExe 프로젝트 폴더)
-  │  │  ├─ debug/ (ExExe 디버그 빌드)
-  │  │  └─ release/ (ExExe 릴리즈 빌드)
-  │  └─ ExDLL/ (ExDLL 프로젝트 폴더)
-  │     ├─ debug/ (ExDLL 디버그 빌드)
-  │     └─ release/ (ExDLL 릴리즈 빌드)
-  └─ src/ (.cpp 소스 파일)
-     ├─ ExExe/ (ExExe 프로젝트 폴더)
-     ├─ ExDLL/ (ExDLL 프로젝트 폴더)
-     └─ ExLibrary/ (외부 라이브러리 폴더)
-  ```
-
-### 개인적으로 자주쓰는 구조
-
-- 개인적으로 자주쓰는 구조는 다음과 같습니다.
-
-  ```text
-  project-folder/ (root folder 최상위 루트 폴더)
-  ├─ build/ (컴파일된 빌드 결과물, .exe, .dll)
-  │  ├─ debug/ (디버그 빌드. 또는 test/ 시범용 빌드)
-  │  └─ release/ (릴리즈 빌드. 또는 dist/ 배포용 빌드)
-  ├─ dev/ (개발 중인 소스코드 및 에셋)
-  │  ├─ asset/ (BGM과 이미지 등의 에셋)
-  │  ├─ include/ (소스코드와 라이브러리의 인터페이스 all special included .h)
-  │  ├─ lib/ (외부 참조 라이브러리 all third-party library files (.a/.so files) here)
-  │  └─ src/ (개발 소스코드 (.c , .h .cpp) files here)
-  ├─ doc/ (개발 관련 문서, 원페이저, SRS, SDS, 매뉴얼, 참고문서)
-  ├── .gitignore
-  ├── LICENSE
-  ├── Makefile
-  └── README.md
-  ```
+# cpp-opengl：Basic Setting
 
 ## g++ vscode setting
 
@@ -263,4 +186,57 @@ run: all
 ### 오브젝트 파일 및 실행 파일 삭제
 clean:
 	rm -f $(OBJ) $(OUTPUT)
+```
+
+## 환경 구축
+
+&nbsp; OpenGL은 그래픽 렌더링에만 집중하는 API이기 때문에, 창 생성, 입력 처리, 오디오 등은 직접 제공하지 않습니다. 그래서 OpenGL로 개발을 할 때에는 보통 SDL, GLFW, SFML 같은 라이브러리와 함께 사용합니다.
+
+&nbsp; 다음의 라이브러리들을 설치해야 합니다.
+
+- OpenGL
+
+  &nbsp; OpenGL(Open Graphics Library) 은 범용성을 보장하기 위해 발표된 2D, 3D 그래픽 API의 규격서이자 범용 크로스플랫폼 라이브러리 입니다.
+
+- OpenAL
+
+  &nbsp; 주로 3D 공간 음향, 위치 기반 오디오 등 게임의 고급 사운드 효과를 줄 수 있습니다.
+
+- GLFW
+
+  &nbsp; OpenGL 용 창 및 이벤트 처리 라이브러리
+
+- SDL
+
+  &nbsp; SDL(Simple DirectMedia Layer) 은 크로스플랫폼 멀티미디어 라이브러리로, 게임 및 멀티미디어 애플리케이션 개발을 쉽게 해주는 다양한 기능을 제공합니다. SDL은 창 생성, 입력(키보드/마우스/조이스틱), 오디오, 네트워크, 렌더링(2D 그래픽) 등을 지원하며, 특히 플랫폼별로 달라지는 저수준 API를 추상화해서 개발자가 한 번 작성한 코드로 여러 운영체제에서 동작하게 할 수 있습니다.
+
+- SDL_net
+
+&nbsp; 설치 명령어는 다음과 같습니다.
+
+```bash
+# 시스템 전체 업데이트
+pacman -Syu
+
+# OpenGL
+## OpenGL 헤더 및 기본 개발 파일
+pacman -S mingw-w64-ucrt-x86_64-opengl-api
+
+## OpenGL용 창 및 이벤트 처리 라이브러리
+pacman -S mingw-w64-ucrt-x86_64-glfw
+
+## OpenGL 확장 래퍼 라이브러리
+pacman -S mingw-w64-ucrt-x86_64-glew
+
+## OpenAL 3D 사운드 등 고급 오디오 기능 라이브러리
+pacman -S mingw-w64-ucrt-x86_64-openal
+
+# SDL2
+## SDL2 기본 라이브러리
+pacman -S mingw-w64-ucrt-x86_64-SDL2
+
+## SDL 확장 모듈 (이미지, 오디오, 텍스트 처리 등)
+pacman -S mingw-w64-ucrt-x86_64-SDL2_image
+pacman -S mingw-w64-ucrt-x86_64-SDL2_mixer
+pacman -S mingw-w64-ucrt-x86_64-SDL2_ttf
 ```

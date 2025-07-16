@@ -96,6 +96,7 @@
 
   // ### Formatter:
   "html.format.extraLiners": "",
+  "editor.renderWhitespace": "all", // show space & tab
   "editor.tabSize": 2,
   "editor.formatOnSave": true,
   "editor.accessibilitySupport": "off",

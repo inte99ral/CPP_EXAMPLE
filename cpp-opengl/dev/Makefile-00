@@ -1,0 +1,55 @@
+# Makefile
+## Default Setting
+### .PHONY 타겟 선언 (실제 파일과 구분)
+.PHONY: default all run clean
+
+### 기본 타겟 설정
+default: run
+
+
+## Variable
+### 컴파일러 선택
+CXX      := g++
+
+### 컴파일러 옵션
+
+CXXFLAGS := -O2 -Wall -Wextra -Werror -g -std=gnu++17
+
+### 전처리단계 헤더 경로 추가
+CXXIPATH := -I./include
+
+### 링킹단계 라이브러리 경로 추가
+CXXLPATH := -L./lib
+
+### 링킹단계 라이브러리 호출
+CXXLIB   := -lm
+
+### 소스 파일
+SRC      := Main.cpp
+
+### 오브젝트 파일
+OBJ      := $(SRC:.cpp=.o)
+
+### 실행 파일 이름
+OUTPUT   := outputfile
+
+
+## Target
+### 기본 타겟: 실행 파일 생성
+all: $(OUTPUT)
+
+### 실행 파일 빌드
+$(OUTPUT): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+#### 오브젝트 파일 생성(패턴규칙을 의미하는 문법입니다. .o 로 끝나는 타겟에 전부 적용됩니다.)
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+### 실행 파일 실행
+run: all
+	./$(OUTPUT)
+
+### 오브젝트 파일 및 실행 파일 삭제
+clean:
+	rm -f $(OBJ) $(OUTPUT)

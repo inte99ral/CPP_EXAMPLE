@@ -2,10 +2,10 @@
   // task.json 에 대한 공식문서 https://go.microsoft.com/fwlink/?LinkId=733558
   "version": "2.0.0",
   "tasks": [
-    // # Build & Compile =========================================================
+    // # Build & Compile
 
     // ## C++ ====================================================================
-    // ### [ ] C++：CMD：단일파일 빌드 (백준 채점용) ================================
+    // ### [ ] C++：CMD：단일파일 빌드 (백준 채점용)
     {
       "label": "C++：백준 풀이 빌드",
       "detail": "백준 C++17 표준옵션으로 컴파일합니다.",
@@ -50,7 +50,7 @@
       }
     },
 
-    // ### [ ] C++：CMD：ASIO 라이브러리 빌드 ======================================
+    // ### [ ] C++：CMD：ASIO 라이브러리 빌드
     {
       "label": "C++：CMD：ASIO 라이브러리 빌드",
       "detail": "내부의 cpp 파일들을 반복검색한 후 빌드합니다.",
@@ -121,9 +121,11 @@
       }
     },
 
-    // ### [x] C++：Makefile ==========================================================
+    // ## Makefile ====================================================================
+
+    // ### [x] Makefile：Compile All
     {
-      "label": "C++：Makefile",
+      "label": "Makefile：Compile All",
       "type": "shell",
       "group": {
         "isDefault": true,
@@ -138,18 +140,55 @@
       "problemMatcher": []
     },
 
-    // # Test & Run ==============================================================
-    // ## C++ ====================================================================
-    // ### [x] C++：빌드된 .exe 파일 실행 ==========================================
+    // # Test & Run
+    // ## C++ =========================================================================
+    // ### [x] C++：빌드된 .exe 파일 실행
     {
       "label": "C++：빌드된 .exe 파일 실행",
       "detail": "현재 폴더에서 cpp 파일과 같은 이름의 exe 파일을 구동합니다.",
       "type": "process",
       "group": {
-        "kind": "test",
-        "isDefault": true
+        "isDefault": true,
+        // "isDefault": false,
+        "kind": "test"
       },
       "command": "${fileDirname}/${fileBasenameNoExtension}.exe"
+    },
+
+    // ## Makefile ====================================================================
+
+    // ### [x] Makefile：Run
+    {
+      "label": "Makefile：Run",
+      "type": "shell",
+      "group": {
+        "isDefault": true,
+        // "isDefault": false,
+        "kind": "test"
+      },
+      "command": "mingw32-make",
+      "args": ["run"],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": []
+    }
+
+    // ### [x] Makefile：Clean
+    {
+      "label": "Makefile：Clean",
+      "type": "shell",
+      "group": {
+        "isDefault": true,
+        // "isDefault": false,
+        "kind": "test"
+      },
+      "command": "mingw32-make",
+      "args": ["clean"],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": []
     }
   ]
 }

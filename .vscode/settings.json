@@ -97,7 +97,7 @@
   // ### Formatter:
   "html.format.extraLiners": "",
   "editor.renderWhitespace": "all", // show space & tab
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.formatOnSave": true,
   "editor.accessibilitySupport": "off",
   "editor.defaultFormatter": "esbenp.prettier-vscode", // prettier formatter setting
@@ -232,7 +232,8 @@
     "typeindex": "cpp",
     "typeinfo": "cpp",
     "valarray": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "strstream": "cpp"
   },
   "makefile.configureOnOpen": false
 }

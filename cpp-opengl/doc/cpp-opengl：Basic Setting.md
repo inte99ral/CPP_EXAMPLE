@@ -130,7 +130,7 @@
         "isDefault": true
       },
       "options": {
-        "cwd": "${workspaceFolder}"
+        "cwd": "${fileDirname}"
       },
       "problemMatcher": []
     }

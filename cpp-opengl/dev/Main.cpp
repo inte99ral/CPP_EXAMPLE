@@ -6,6 +6,7 @@ using namespace std;
 
 // ### Main
 int main(int argc, char* argv[]) {
-  cout << "TEST" << endl;
+  // TestObject test = TestObject();
+  cout << "Hello, world!" << endl;
   return 0;
 }

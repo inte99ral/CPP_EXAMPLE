@@ -207,7 +207,7 @@ project-folder/ (솔루션 최상위 폴더)
         "isDefault": true
       },
       "options": {
-        "cwd": "${workspaceFolder}"
+        "cwd": "${fileDirname}"
       },
       "problemMatcher": []
     }
